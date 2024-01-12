@@ -1,71 +1,65 @@
 import { create } from 'zustand'
+import { immer } from 'zustand/middleware/immer'
 
 import type { Product, InCartProduct } from '@/lib/types/types'
 
-export type Store = {
+type Store = {
   inCartProducts: InCartProduct[]
+}
+
+type Actions = {
   addProduct: (product: Product) => void
   removeProduct: (productId: Product['id']) => void
   increaseQuantity: (productId: Product['id']) => void
   decreaseQuantity: (productId: Product['id']) => void
+  emptyCart: () => void
 }
 
-export const useCartStore = create<Store>()((set, get) => ({
-  inCartProducts: [],
-  addProduct: (product: Product) => {
-    set(state => {
-      if (state.inCartProducts.some(p => p.id === product.id)) {
-        return {
-          inCartProducts: state.inCartProducts.map(p => {
-            if (p.id === product.id) {
-              return { ...p, quantity: p.quantity + 1 }
-            }
-            return p
+export const useCartStore = create<Store & Actions>()(
+  immer(set => ({
+    inCartProducts: [],
+    addProduct: (product: Product) => {
+      set(state => {
+        if (state.inCartProducts.some(p => p.id === product.id)) {
+          const index = state.inCartProducts.findIndex(p => p.id === product.id)
+          state.inCartProducts[index].quantity += 1
+        } else {
+          state.inCartProducts.push({
+            ...product,
+            quantity: 1
           })
         }
-      } else {
-        return {
-          inCartProducts: [...state.inCartProducts, { ...product, quantity: 1 }]
+      })
+    },
+
+    removeProduct: (productId: number) => {
+      set(state => {
+        state.inCartProducts = state.inCartProducts.filter(
+          p => p.id !== productId
+        )
+      })
+    },
+
+    increaseQuantity: (productId: number) => {
+      set(state => {
+        const index = state.inCartProducts.findIndex(p => p.id === productId)
+        state.inCartProducts[index].quantity += 1
+      })
+    },
+
+    decreaseQuantity: (productId: number) => {
+      set(state => {
+        const index = state.inCartProducts.findIndex(p => p.id === productId)
+        if (state.inCartProducts[index].quantity > 1) {
+          state.inCartProducts[index].quantity -= 1
         }
-      }
-    })
-  },
+      })
+    },
 
-  removeProduct: (productId: number) => {
-    set(state => {
-      return {
-        inCartProducts: state.inCartProducts.filter(p => p.id !== productId)
-      }
-    })
-  },
-
-  increaseQuantity: (productId: number) => {
-    set(state => {
-      return {
-        inCartProducts: state.inCartProducts.map(p => {
-          if (p.id === productId) {
-            return { ...p, quantity: p.quantity + 1 }
-          }
-          return p
-        })
-      }
-    })
-  },
-
-  decreaseQuantity: (productId: number) => {
-    set(state => {
-      return {
-        inCartProducts: state.inCartProducts.map(p => {
-          if (p.id === productId) {
-            if (p.quantity > 1) {
-              return { ...p, quantity: p.quantity - 1 }
-            } else {
-              return p
-            }
-          }
-          return p
-        })
-      }
-    })
-  }
-}))
+    emptyCart: () => {
+      set(state => {
+        state.inCartProducts = []
+      })
+    }
+  }))
+)

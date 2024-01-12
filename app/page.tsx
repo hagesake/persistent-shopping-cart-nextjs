@@ -1,6 +1,6 @@
 import ProductList from '@/ui/components/Products/ProductList'
 import ProductCard from '@/ui/components/Products/ProductCard'
-import type { Product } from '@/ui/components/Products/ProductList'
+import type { Product } from '@/lib/types/types'
 
 const products: Product[] = [
   {
@@ -44,7 +44,7 @@ const products: Product[] = [
 const Home = () => {
   return (
     <>
-      <main className="flex flex-col p-4">
+      <main className="flex flex-col space-y-2 p-4">
         <h1>This is the home page</h1>
 
         <ProductList>
