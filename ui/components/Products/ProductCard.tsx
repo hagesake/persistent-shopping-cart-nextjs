@@ -1,4 +1,4 @@
-import type { Product } from './ProductList'
+import type { Product } from '@/lib/types/types'
 
 type Props = {
   product: Product

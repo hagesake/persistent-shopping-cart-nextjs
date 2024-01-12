@@ -1,10 +1,4 @@
-export type InCartProduct = {
-  id: number
-  name: string
-  price: number
-  description: string
-  quantity: number
-}
+import type { InCartProduct } from '@/lib/types/types'
 
 type Props = {
   product: InCartProduct
