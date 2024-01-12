@@ -1,3 +1,5 @@
+'use client'
+
 type Props = {
   children: JSX.Element[]
 }
