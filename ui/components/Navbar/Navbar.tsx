@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { useCartStore } from '@/lib/zustand/store'
+import useStore from '@/lib/zustand/useStore'
 
 const ROUTES = [
   { name: 'CART', path: '/cart' },
@@ -16,7 +17,8 @@ const ROUTES = [
 const Navbar = () => {
   const pathname = usePathname()
 
-  const { inCartProducts } = useCartStore()
+  const inCartProducts = useStore(useCartStore, state => state.inCartProducts)
+
   return (
     <>
       <header className="sticky top-0 flex items-center justify-between bg-slate-400 p-4">
@@ -38,7 +40,7 @@ const Navbar = () => {
                   {route.name === 'CART' && (
                     <div className="rounded-full bg-slate-200 px-2">
                       <p className="text-center text-slate-600">
-                        {inCartProducts.length}
+                        {inCartProducts && inCartProducts.length}
                       </p>
                     </div>
                   )}

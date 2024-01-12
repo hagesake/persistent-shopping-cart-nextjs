@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
+import { persist } from 'zustand/middleware'
 
 import type { Product, InCartProduct } from '@/lib/types/types'
 
@@ -16,6 +17,61 @@ type Actions = {
 }
 
 export const useCartStore = create<Store & Actions>()(
+  persist(
+    immer(set => ({
+      inCartProducts: [],
+
+      addProduct: (product: Product) => {
+        set(state => {
+          if (state.inCartProducts.some(p => p.id === product.id)) {
+            const index = state.inCartProducts.findIndex(
+              p => p.id === product.id
+            )
+            state.inCartProducts[index].quantity += 1
+          } else {
+            state.inCartProducts.push({
+              ...product,
+              quantity: 1
+            })
+          }
+        })
+      },
+
+      removeProduct: (productId: number) => {
+        set(state => {
+          state.inCartProducts = state.inCartProducts.filter(
+            p => p.id !== productId
+          )
+        })
+      },
+
+      increaseQuantity: (productId: number) => {
+        set(state => {
+          const index = state.inCartProducts.findIndex(p => p.id === productId)
+          state.inCartProducts[index].quantity += 1
+        })
+      },
+
+      decreaseQuantity: (productId: number) => {
+        set(state => {
+          const index = state.inCartProducts.findIndex(p => p.id === productId)
+          if (state.inCartProducts[index].quantity > 1) {
+            state.inCartProducts[index].quantity -= 1
+          }
+        })
+      },
+
+      emptyCart: () => {
+        set(state => {
+          state.inCartProducts = []
+        })
+      }
+    })),
+    { name: 'shopping_cart' }
+  )
+)
+
+/*
   immer(set => ({
     inCartProducts: [],
     addProduct: (product: Product) => {
@@ -62,4 +118,4 @@ export const useCartStore = create<Store & Actions>()(
       })
     }
   }))
-)
+ */

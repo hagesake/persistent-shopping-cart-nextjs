@@ -4,14 +4,18 @@ import ProductList from '@/ui/components/Products/ProductList'
 import InCartProductCard from '@/ui/components/Products/InCartProductCard'
 
 import { useCartStore } from '@/lib/zustand/store'
+import useStore from '@/lib/zustand/useStore'
 
 const ShoppingCartPage = () => {
-  const { inCartProducts, emptyCart } = useCartStore()
+  const { emptyCart } = useCartStore()
+  const inCartProducts = useStore(useCartStore, state => state.inCartProducts)
 
-  const totalPrice = inCartProducts.reduce(
-    (acc, product) => acc + product.price * product.quantity,
-    0
-  )
+  const totalPrice =
+    inCartProducts &&
+    inCartProducts.reduce(
+      (acc, product) => acc + product.price * product.quantity,
+      0
+    )
 
   return (
     <>
@@ -20,7 +24,7 @@ const ShoppingCartPage = () => {
 
         <div className="flex items-center justify-end gap-4">
           <p>Total: {totalPrice}</p>
-          {inCartProducts.length > 0 && (
+          {inCartProducts && inCartProducts.length > 0 && (
             <button
               onClick={emptyCart}
               className="rounded bg-slate-600 px-2 py-1 text-sm text-slate-100"
@@ -30,11 +34,13 @@ const ShoppingCartPage = () => {
           )}
         </div>
 
-        <ProductList>
-          {inCartProducts.map(product => (
-            <InCartProductCard key={product.id} product={product} />
-          ))}
-        </ProductList>
+        {inCartProducts && (
+          <ProductList>
+            {inCartProducts.map(product => (
+              <InCartProductCard key={product.id} product={product} />
+            ))}
+          </ProductList>
+        )}
       </main>
     </>
   )
