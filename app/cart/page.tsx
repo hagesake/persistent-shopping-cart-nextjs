@@ -1,7 +1,7 @@
 'use client'
 
-import ProductList from '@/ui/components/Products/ProductList'
-import InCartProductCard from '@/ui/components/Products/InCartProductCard'
+import ProductList from '@/ui/Products/ProductList'
+import InCartProductCard from '@/ui/Products/InCartProductCard'
 
 import { useCartStore } from '@/lib/zustand/store'
 import useStore from '@/lib/zustand/useStore'

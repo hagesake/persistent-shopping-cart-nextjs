@@ -1,5 +1,5 @@
-import ProductList from '@/ui/components/Products/ProductList'
-import ProductCard from '@/ui/components/Products/ProductCard'
+import ProductList from '@/ui/Products/ProductList'
+import ProductCard from '@/ui/Products/ProductCard'
 import type { Product } from '@/lib/types/types'
 
 const products: Product[] = [

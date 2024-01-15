@@ -1,15 +1,15 @@
 'use client'
 
 import type { Product } from '@/lib/types/types'
-
 import { useCartStore } from '@/lib/zustand/store'
 
+import { toast } from 'sonner'
 type Props = {
   product: Product
 }
 
 const ProductCard = ({ product }: Props) => {
-  const { addProduct } = useCartStore()
+  const { addProduct, undoAddProduct } = useCartStore()
 
   return (
     <>
@@ -28,7 +28,17 @@ const ProductCard = ({ product }: Props) => {
             </div>
 
             <button
-              onClick={() => addProduct(product)}
+              onClick={() => {
+                toast(`Added ${product.name} to cart`, {
+                  action: {
+                    label: 'Undo',
+                    onClick: () => {
+                      undoAddProduct(product.id)
+                    }
+                  }
+                })
+                addProduct(product)
+              }}
               className="rounded bg-slate-600 px-2 py-1 text-sm text-slate-100"
             >
               Add to cart
