@@ -1,6 +1,6 @@
-import type { InCartProduct } from '@/lib/types/types'
+import type { InCartProduct } from '@/types/types'
 
-import { useCartStore } from '@/lib/zustand/store'
+import { useCartStore } from '@/zustand/store'
 
 type Props = {
   product: InCartProduct

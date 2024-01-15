@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { useCartStore } from '@/lib/zustand/store'
-import useStore from '@/lib/hooks/useStore'
+import { useCartStore } from '@/zustand/store'
+import useStore from '@/hooks/useStore'
 
 const ROUTES = [
   { name: 'CART', path: '/cart' },
