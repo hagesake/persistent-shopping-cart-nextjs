@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 import { persist } from 'zustand/middleware'
 
-import type { Product, InCartProduct } from '@/lib/types/types'
+import type { Product, InCartProduct } from '@/types/types'
 
 type Store = {
   inCartProducts: InCartProduct[]

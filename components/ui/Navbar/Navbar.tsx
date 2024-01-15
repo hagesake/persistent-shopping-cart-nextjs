@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { useCartStore } from '@/lib/zustand/store'
-import useStore from '@/lib/zustand/useStore'
+import useStore from '@/lib/hooks/useStore'
 
 const ROUTES = [
   { name: 'CART', path: '/cart' },

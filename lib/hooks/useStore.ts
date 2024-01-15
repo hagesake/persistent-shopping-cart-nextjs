@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 
 /**
  * Use this function when you want to fix the "hydration" error in NextJS
+ * For using with persistent data in localStorage
  * @param store
  * @param callback
  */

@@ -1,6 +1,6 @@
-import ProductList from '@/ui/Products/ProductList'
-import ProductCard from '@/ui/Products/ProductCard'
-import type { Product } from '@/lib/types/types'
+import ProductList from '@/components/ui/Products/ProductList'
+import ProductCard from '@/components/ui/Products/ProductCard'
+import type { Product } from '@/types/types'
 
 const products: Product[] = [
   {

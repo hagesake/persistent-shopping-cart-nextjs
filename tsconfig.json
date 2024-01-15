@@ -19,9 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/ui/*": ["./components/ui/*"],
+      "@/components/*": ["./components/*"],
       "@/types/*": ["./lib/types/*"],
+      "@/hooks/*": ["./lib/hooks/*"],
       "@/zustand/*": ["./lib/zustand/*"]
     }
   },
