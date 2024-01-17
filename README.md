@@ -1,6 +1,6 @@
 # Persistent Shopping Cart
 
-This is basic example of a shopping cart built with [React Redux](https://nextjs.org/) and [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction), a state management tool alternative to React Redux
+This is basic example of a shopping cart built with [Nextjs](https://nextjs.org/) and [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction), a state management tool as an alternative to React Redux.
 
 The data stored in the cart is persistent through page refreshing and browser session ended. This functionality is achieved thanks to the [**persist**](https://docs.pmnd.rs/zustand/integrations/persisting-store-data) middleware that's built into the library. Zustand have many others middlewares and third-party libraries created and maintained by the community that extends the capabilities and functionalities of a minimal solution to manage state.
 
