@@ -3,12 +3,12 @@ import { immer } from 'zustand/middleware/immer'
 import { persist } from 'zustand/middleware'
 import { merge } from 'lodash'
 
-import type { StateType, CombinedState, CartSlice } from './slices/types'
+import type { CombinedState } from './slices/types'
 
 import { createCartSlice } from './slices/cartSlice'
 import { createBearsSlice } from './slices/bearsSlice'
 
-export const useBoundStore = create<CombinedState>()(
+const useBoundStore = create<CombinedState>()(
   persist(
     immer((...args) => {
       return {
@@ -31,12 +31,18 @@ export const useBoundStore = create<CombinedState>()(
           persistedState as CombinedState,
           currentState
         )
-
-        // return dm<CombinedState>(persistedState as CombinedState, currentState)
       }
     }
   )
 )
+
+export const useCart = () => useBoundStore(state => state.cart.inCartProducts)
+export const useCartActions = () => useBoundStore(state => state.cart.actions)
+
+export const useBears = () => useBoundStore(state => state.bears.bears)
+export const useBearsActions = () => useBoundStore(state => state.bears.actions)
+
+export default useBoundStore
 
 /**
  * Use a deep-merge function when the state in the zustand store that you want to persist is an object with nested properties fileds.

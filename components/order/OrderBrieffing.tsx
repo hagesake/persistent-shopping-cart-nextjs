@@ -1,6 +1,6 @@
 'use client'
 
-import { useBoundStore } from '@/zustand/cart_store/store'
+import useBoundStore from '@/zustand/cart_store/store'
 import useStore from '@/hooks/useStore'
 
 const OrderBrieffing = () => {

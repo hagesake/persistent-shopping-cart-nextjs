@@ -1,11 +1,11 @@
 'use client'
 
-import { useBoundStore } from '@/zustand/cart_store/store'
+import useBoundStore, { useCartActions } from '@/zustand/cart_store/store'
 import useStore from '@/hooks/useStore'
 import Link from 'next/link'
 
 const CartControls = () => {
-  const { emptyCart } = useBoundStore().cart
+  const { emptyCart } = useCartActions()
   const inCartProducts = useStore(
     useBoundStore,
     state => state.cart.inCartProducts

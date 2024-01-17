@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { useBoundStore } from '@/zustand/cart_store/store'
+import useBoundStore, { useCart } from '@/zustand/cart_store/store'
 import useStore from '@/hooks/useStore'
 
+import { useBears } from '@/zustand/cart_store/store'
 import { useFishes } from '@/zustand/fish_store/store'
 
 const ROUTES = [
@@ -19,12 +20,12 @@ const ROUTES = [
 const Navbar = () => {
   const pathname = usePathname()
 
-  const { bears } = useBoundStore().bears
   const inCartProducts = useStore(
     useBoundStore,
     state => state.cart.inCartProducts
   )
 
+  const bears = useBears()
   const fishes = useFishes()
 
   return (

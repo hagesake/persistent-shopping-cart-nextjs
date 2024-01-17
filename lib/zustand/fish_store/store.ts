@@ -1,8 +1,7 @@
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
-import { useBoundStore } from '../cart_store/store'
-import { stat } from 'fs'
+import useBoundStore from '../cart_store/store'
 
 type FishStore = {
   fishes: number

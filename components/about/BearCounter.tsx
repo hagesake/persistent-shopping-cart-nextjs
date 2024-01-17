@@ -1,9 +1,11 @@
 'use client'
 
-import { useBoundStore } from '@/zustand/cart_store/store'
+import { useBears, useBearsActions } from '@/zustand/cart_store/store'
 
 const BearCounter = () => {
-  const { bears, addBear, killBear } = useBoundStore().bears
+  const bears = useBears()
+  const { addBear, killBear } = useBearsActions()
+
   return (
     <>
       <section className="flex flex-col items-center gap-4">

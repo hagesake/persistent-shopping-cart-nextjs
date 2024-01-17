@@ -1,14 +1,13 @@
 import type { InCartProduct } from '@/types/types'
 
-import { useBoundStore } from '@/zustand/cart_store/store'
+import { useCartActions } from '@/zustand/cart_store/store'
 
 type Props = {
   product: InCartProduct
 }
 
 const InCartProductCard = ({ product }: Props) => {
-  const { removeProduct, increaseQuantity, decreaseQuantity } =
-    useBoundStore().cart
+  const { removeProduct, increaseQuantity, decreaseQuantity } = useCartActions()
 
   return (
     <>
