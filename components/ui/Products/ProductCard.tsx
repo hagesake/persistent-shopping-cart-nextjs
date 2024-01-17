@@ -1,7 +1,7 @@
 'use client'
 
 import type { Product } from '@/types/types'
-import { useCartStore } from '@/zustand/store'
+import { useBoundStore } from '@/zustand/store'
 
 import { toast } from 'sonner'
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 }
 
 const ProductCard = ({ product }: Props) => {
-  const { addProduct, undoAddProduct } = useCartStore()
+  const { addProduct, undoAddProduct } = useBoundStore().cart
 
   return (
     <>

@@ -1,12 +1,15 @@
 'use client'
 
-import { useCartStore } from '@/zustand/store'
+import { useBoundStore } from '@/zustand/store'
 import useStore from '@/hooks/useStore'
 import Link from 'next/link'
 
 const CartControls = () => {
-  const { emptyCart } = useCartStore()
-  const inCartProducts = useStore(useCartStore, state => state.inCartProducts)
+  const { emptyCart } = useBoundStore().cart
+  const inCartProducts = useStore(
+    useBoundStore,
+    state => state.cart.inCartProducts
+  )
 
   const totalPrice =
     inCartProducts &&

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { useCartStore } from '@/zustand/store'
+import { useBoundStore } from '@/zustand/store'
 import useStore from '@/hooks/useStore'
 
 const ROUTES = [
@@ -17,13 +17,21 @@ const ROUTES = [
 const Navbar = () => {
   const pathname = usePathname()
 
-  const inCartProducts = useStore(useCartStore, state => state.inCartProducts)
+  const { bears } = useBoundStore().bears
+  const inCartProducts = useStore(
+    useBoundStore,
+    state => state.cart.inCartProducts
+  )
 
   return (
     <>
       <header className="sticky top-0 flex items-center justify-between bg-slate-400 p-4">
         <div>
           <Link href={'/'}>LOGO</Link>
+        </div>
+
+        <div>
+          <p>Bears: {bears}</p>
         </div>
 
         <nav>

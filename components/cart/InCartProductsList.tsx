@@ -1,13 +1,16 @@
 'use client'
 
-import { useCartStore } from '@/zustand/store'
+import { useBoundStore } from '@/zustand/store'
 import useStore from '@/hooks/useStore'
 
 import ProductList from '../ui/Products/ProductList'
 import InCartProductCard from './InCartProductCard'
 
 const InCartProductsList = () => {
-  const inCartProducts = useStore(useCartStore, state => state.inCartProducts)
+  const inCartProducts = useStore(
+    useBoundStore,
+    state => state.cart.inCartProducts
+  )
 
   return (
     <>
