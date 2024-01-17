@@ -8,7 +8,7 @@ The data stored in the cart is persistent through page refreshing and browser se
 
 In this demo I've tried to implement two patterns for managing the state. In the first one I've used a redux-like pattern splitting the store into slices and in the second one I've used two individual stores that are co-dependent.
 
-Keeping in mind this is a demo for studying and learn the details of this tool I didn't stoof quite faithfull to the initial concept LOL. I will be updating and enhancing this demo in some near future, for sure.
+Keeping in mind this is a demo for studying and learn the details of this tool I didn't stood quite faithfull to the initial concept (LOL!!!). I will be updating and enhancing this demo in some near future, for sure.
 
 ## Project setup
 
