@@ -1,6 +1,6 @@
 'use client'
 
-import { useBoundStore } from '@/zustand/store'
+import { useBoundStore } from '@/zustand/cart_store/store'
 import useStore from '@/hooks/useStore'
 import Link from 'next/link'
 

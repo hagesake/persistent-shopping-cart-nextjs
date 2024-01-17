@@ -31,6 +31,8 @@ export const useBoundStore = create<CombinedState>()(
           persistedState as CombinedState,
           currentState
         )
+
+        // return dm<CombinedState>(persistedState as CombinedState, currentState)
       }
     }
   )
@@ -47,3 +49,7 @@ export const useBoundStore = create<CombinedState>()(
 function deepMerge<T extends object>(persistedState: T, currentState: T): T {
   return merge({}, persistedState, currentState)
 }
+
+// const dm = <T extends object>(p: T, c: T): T => {
+//   return merge({}, p, c)
+// }

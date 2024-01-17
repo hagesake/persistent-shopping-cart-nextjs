@@ -1,16 +1,17 @@
 'use client'
 
-import { useBoundStore } from '@/zustand/cart_store/store'
+import { useFishes, useFishesActions } from '@/zustand/fish_store/store'
 
-const BearCounter = () => {
-  const { bears, addBear, killBear } = useBoundStore().bears
+const FishCounter = () => {
+  const fishes = useFishes()
+  const { addFish, killFish } = useFishesActions()
   return (
     <>
       <section className="flex flex-col items-center gap-4">
         <div className="space-x-2">
           <button
             onClick={() => {
-              killBear()
+              killFish()
             }}
             className="rounded bg-slate-600 p-2  text-sm font-bold text-white"
           >
@@ -18,7 +19,7 @@ const BearCounter = () => {
           </button>
           <button
             onClick={() => {
-              addBear()
+              addFish()
             }}
             className="rounded bg-slate-600 p-2  text-sm font-bold text-white"
           >
@@ -26,11 +27,11 @@ const BearCounter = () => {
           </button>
         </div>
         <div>
-          <p className="text-xl font-bold ">{`bears: ${bears}`}</p>
+          <p className="text-xl font-bold ">{`fishes: ${fishes}`}</p>
         </div>
       </section>
     </>
   )
 }
 
-export default BearCounter
+export default FishCounter

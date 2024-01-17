@@ -1,4 +1,4 @@
-import { BearCounter } from '@/components/about'
+import { BearCounter, FishCounter } from '@/components/about'
 
 const AboutPage = () => {
   return (
@@ -7,6 +7,8 @@ const AboutPage = () => {
         <h1>This is the about page</h1>
 
         <BearCounter />
+
+        <FishCounter />
       </main>
     </>
   )

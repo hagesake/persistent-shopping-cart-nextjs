@@ -1,7 +1,7 @@
 'use client'
 
 import type { Product } from '@/types/types'
-import { useBoundStore } from '@/zustand/store'
+import { useBoundStore } from '@/zustand/cart_store/store'
 
 import { toast } from 'sonner'
 type Props = {
